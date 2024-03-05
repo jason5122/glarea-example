@@ -5,11 +5,11 @@
 
 G_BEGIN_DECLS
 
-#define GLAREA_TYPE_APP (glarea_app_get_type ())
+#define GLAREA_TYPE_APP (glarea_app_get_type())
 
-G_DECLARE_FINAL_TYPE (GlareaApp, glarea_app, GLAREA, APP, GtkApplication)
+G_DECLARE_FINAL_TYPE(GlareaApp, glarea_app, GLAREA, APP, GtkApplication)
 
-GtkApplication *glarea_app_new (void);
+GtkApplication* glarea_app_new(void);
 
 G_END_DECLS
 

@@ -38,17 +38,5 @@ glarea-resources.c: glarea.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sou
 $(BIN): $(OBJS)
 	$(V_LINK)$(CC) -o $(@F) $(OBJS) $(LIBS)
 
-install: $(BIN) io.bassi.Glarea.desktop io.bassi.Glarea.appdata.xml
-	install -d -m 0755 $(PREFIX)/bin
-	install -m0755 $(BIN) $(PREFIX)/bin/$(BIN)
-	install -d -m 0755 $(PREFIX)/share/applications
-	install -D -m0644 io.bassi.Glarea.desktop $(PREFIX)/share/applications/io.bassi.Glarea.desktop
-	update-desktop-database -q $(PREFIX)/share/applications
-	install -d -m 0755 $(PREFIX)/share/icons/hicolor/512x512/apps
-	install -D -m0644 io.bassi.Glarea.png $(PREFIX)/share/icons/hicolor/512x512/apps/io.bassi.Glarea.png
-	gtk-update-icon-cache -q -t -f $(PREFIX)/share/icons/hicolor
-	install -d -m 0755 $(PREFIX)/share/appdata
-	install -D -m0644 io.bassi.Glarea.appdata.xml $(PREFIX)/share/appdata/io.bassi.Glarea.appdata.xml
-
 clean:
 	@rm -f $(GEN) $(OBJS) $(BIN)
