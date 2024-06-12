@@ -14,9 +14,14 @@ static GtkWidget* create_window(GtkApplication* app) {
     GtkWidget* window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(window), "Window");
     gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
+
+    GtkWidget* gtk_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkWidget* gl_area = gtk_gl_area_new();
-    gtk_container_add(GTK_CONTAINER(window), gl_area);
+    gtk_box_append(GTK_BOX(gtk_box), gl_area);
     g_signal_connect(gl_area, "realize", G_CALLBACK(realize), NULL);
+
+    gtk_window_set_child(GTK_WINDOW(window), gtk_box);
+
     return window;
 }
 
@@ -24,8 +29,8 @@ static void activate(GtkApplication* app, gpointer user_data) {
     GtkWidget* window1 = create_window(app);
     GtkWidget* window2 = create_window(app);
 
-    gtk_widget_show_all(window1);
-    gtk_widget_show_all(window2);
+    gtk_window_present(GTK_WINDOW(window1));
+    gtk_window_present(GTK_WINDOW(window2));
 }
 
 int main(int argc, char** argv) {
