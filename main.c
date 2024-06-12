@@ -1,3 +1,7 @@
+// https://stackoverflow.com/questions/46548553/c-setenv-implicit-declaration
+#define _POSIX_C_SOURCE 200112L
+#include <stdlib.h>
+
 #include <epoxy/gl.h>
 #include <gtk/gtk.h>
 #include <stdio.h>
@@ -47,6 +51,10 @@ static void activate(GtkApplication* app, gpointer user_data) {
 }
 
 int main(int argc, char** argv) {
+    // TODO: Remove this once OpenGL backend starts up faster.
+    //       Also, consider allowing users to override `GSK_RENDERER` (change 1 to 0).
+    setenv("GSK_RENDERER", "cairo", 1);
+
     GtkApplication* app;
     int status;
 
